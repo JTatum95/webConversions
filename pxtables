@@ -2,23 +2,25 @@
 
 echo "Default font size (in px): "
 read size;
-size=$(echo $base | sed 's/px//g') # Filter out px if added
+size=$(echo $size | sed 's/px//g') # Filter out px if added
 
-em=$(bc <<< "scale=10; 1/$base")
+em=$(bc <<< "scale=10; 1/$size")
 
 echo
-echo '========================================='
-echo '|    px    |    em    |    %    |'
+echo '==========================================='
+echo '|    px    |       em      |      %       |'
 
 for i in {6..24}
   do
-    if (($i<10));
-      then
-        echo '     '$i'    |     '$(bc <<< "scale=10; $em*$i")'    |     '$(bc <<< "scale=10; $em*$i*100")'    |'
-      else
-        echo '    '$i'    |    '$em*$i'    |    '$em*$i*100'    |'
-    fi
+    curEm=$(bc <<< "scale=10; $em*$i")
+    curPer=$(bc <<< "scale=10; $em*$i*100")
+    printf "|  %2s" "$i"
+    printf "%s\t" "px    |"
+    printf "%.5s" "$curEm"
+    printf "%s\t" "em    |"
+    printf "%.5s" "$curPer"
+    printf "%s\t\n" "%    |"
     i=$(($i+1))
   done
-echo '==========================================='
+echo '============================================'
 echo
