@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Element size (in em): "
+read base;
+base=$(echo $base | sed 's/em//g') # Filter out em if added
+
+echo "Parent size (in px): "
+read size;
+size=$(echo $size | sed 's/px//g') # Filter out px if added
+
+converted=$(bc <<< "scale=10; $base*$size")
+
+echo "Converted size: $converted px";
