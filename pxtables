@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "Default font size (in px): "
+read size;
+size=$(echo $base | sed 's/px//g') # Filter out px if added
+
+em=$(bc <<< "scale=10; 1/$base")
+
+echo
+echo '========================================='
+echo '|    px    |    em    |    %    |'
+
+for i in {6..24}
+  do
+    if (($i<10));
+      then
+        echo '     '$i'    |     '$(bc <<< "scale=10; $em*$i")'    |     '$(bc <<< "scale=10; $em*$i*100")'    |'
+      else
+        echo '    '$i'    |    '$em*$i'    |    '$em*$i*100'    |'
+    fi
+    i=$(($i+1))
+  done
+echo '==========================================='
+echo

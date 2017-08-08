@@ -2,8 +2,9 @@
 
 cp pxtoem /usr/local/sbin/
 cp emtopx /usr/local/sbin/
-cp pxtorem /usr/local/sbin/
+cp pxto% /usr/local/sbin/
 cp emto% /usr/local/sbin/
+cp pxtables /usr/local/sbin/
 
 source ~/.bash_profile
 

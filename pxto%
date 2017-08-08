@@ -1,16 +1,13 @@
 #!/bin/bash
 
 echo "Base font size (in px): "
-read base
+read base 
 base=$(echo $base | sed 's/px//g') # Filter out px if added
 
 echo "Size to convert (in px): "
 read size
 size=$(echo $size | sed 's/px//g') # Filter out px if added
 
+converted=$(bc <<< "scale=10; $size/$base*100")
 
-unit=$(bc <<< "scale=10; 1/$base")
-
-converted=$(bc <<< "scale=10; $unit*$size")
-
-echo "Converted size: $converted em"
+echo "Converted size: $converted %"
