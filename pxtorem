@@ -5,10 +5,10 @@ usage()
     cat << EOF
 webConversion
 Description: simple tool to conver between rem, px, and %
-Usage: .pxto%/
-Follow prompts for sizes: First base px size, then size (in px) to convert
+Usage: ./pxtorem
+Follow prompts for sizes: First, base px size, then size (in px) to convert
 
-Alternatively arguments can be passed in as ./pxto% 1 16
+Alternatively arguments can be passed in as ./pxtorem 1 16
 
 To view a table of sizes, run ./pxtables
 EOF
@@ -30,7 +30,7 @@ if [[ $# == 2 ]]; then
 else
 
 	echo "Base font size (in px): "
-	read base 
+	read base
 	base=$(echo $base | sed 's/px//g') # Filter out px if added
 
 	echo "Size to convert (in px): "
@@ -39,6 +39,8 @@ else
 
 fi
 
-converted=$(bc <<< "scale=10; $size/$base*100")
+unit=$(bc <<< "scale=10; 1/$base")
 
-echo "Converted size: $converted %"
+converted=$(bc <<< "scale=10; $unit*$size")
+
+echo "Converted size: $converted rem"

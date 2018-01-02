@@ -1,0 +1,42 @@
+#!/bin/bash
+
+usage()
+{
+    cat << EOF
+webConversion
+Description: simple tool to conver between rem, px, and %
+Usage: ./remto%
+Follow prompts for sizes: First, base px size, then size (in rem) to convert
+
+Alternatively arguments can be passed in as ./remtopx 1 16
+
+To view a table of sizes, run ./pxtables
+EOF
+}
+
+while getopts 'vh' flag; do
+  case "${flag}" in
+    h) usage
+       exit 0 ;;
+    v) verbose='true' ;;
+    *) error "Unexpected option ${flag}" ;;
+  esac
+done
+
+if [[ $# == 2 ]]; then
+    base=$1
+    size=$2
+
+else
+
+    echo "Root element size (in px. Default is 16px): "
+    read base;
+    base=$(echo $base | sed 's/px//g') # Filter out px if added
+
+	echo "Element size (in rem): "
+	read size;
+	size=$(echo $size | sed 's/rem//g') # Filter out rem if added
+
+converted=$(bc <<< "scale=10; $base*100")
+
+echo "Converted size: $converted %";

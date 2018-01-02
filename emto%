@@ -1,9 +1,0 @@
-#!/bin/bash
-
-echo "Element size (in em): "
-read base;
-base=$(echo $base | sed 's/em//g') # Filter out em if added
-
-converted=$(bc <<< "scale=10; $base*100")
-
-echo "Converted size: $converted %";

@@ -8,7 +8,7 @@ em=$(bc <<< "scale=10; 1/$size")
 
 echo
 echo '==========================================='
-echo '|    px    |       em      |      %       |'
+echo '|    px    |      rem      |      %       |'
 
 for i in {6..24}
   do
