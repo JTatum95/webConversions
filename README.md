@@ -4,7 +4,7 @@ To install, download the files and make them executable. To make the files runna
 
 This is a simple project that I made mostly for myself, that is still in progress.
 
-Known issues:
+Known optimizations needed:
 <ul>
 <li>pxtables doesn't quite round properly</li>
 <li>Little handling of user error</li>
